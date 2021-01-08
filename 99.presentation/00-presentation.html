@@ -54,8 +54,13 @@
 
 ---
 <!-- .slide: class="onlydiagram" -->
-![](images/microservices/config-server.png)
-## Centralized Configuration
+![](images/microservices/monolith.png)
+## Monolith
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/microservice-example.png)
+## Microservices
 
 ---
 ## Ports Standardization
@@ -69,6 +74,110 @@
 | Netflix Eureka Naming Server | 8761 |
 | API Gateway | 8765 |
 | Zipkin Distributed Tracing Server | 9411 |
+
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/config-server.png)
+## Config Server
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/microservice-environments.png)
+## Environments
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/currency-conversion-environments.png)
+## Environments
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/currency-exchange-environments.png)
+## Environments
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/microservices-overview.png)
+## Microservices Overview
+
+---
+## Currency Exchange Microservice
+
+
+> What is the exchange rate of one currency in another?
+
+```
+
+http://localhost:8000/currency-exchange/from/USD/to/INR
+
+{
+   "id":10001,
+   "from":"USD",
+   "to":"INR",
+   "conversionMultiple":65.00,
+   "environment":"8000 instance-id"
+}
+
+```
+
+
+
+---
+## Currency Conversion Microservice
+<!-- .slide: class="image-right image-forty" -->
+
+> Convert 10 USD into INR
+
+```
+
+http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+
+{
+  "id": 10001,
+  "from": "USD",
+  "to": "INR",
+  "conversionMultiple": 65.00,
+  "quantity": 10,
+  "totalCalculatedAmount": 650.00,
+  "environment": "8000 instance-id"
+}
+```
+
+![](images/microservices/microservices-overview.png)
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/naming-server.png)
+## Naming Server
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/load-balancing.png)
+## Load Balancing
+
+---
+## Spring Cloud Gateway
+<!-- .slide: class="image-right image-forty" -->
+![](images/microservices/spring-cloud-gateway.png)
+From https://docs.spring.io
+- Simple, yet effective way to route to APIs
+- Provide cross cutting concerns:
+	- Security
+	- Monitoring/metrics
+- Built on top of Spring WebFlux (Reactive Approach)
+- Features:
+	- Match routes on any request attribute
+	- Define Predicates and Filters
+	- Integrates with Spring Cloud Discovery Client (Load Balancing)
+	- Request Rate Limiting
+	- Path Rewriting
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/distributed-tracing.png)
+## Distributed Tracing
+
 
 
 </script>
