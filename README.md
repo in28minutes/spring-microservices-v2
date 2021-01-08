@@ -1,6 +1,11 @@
 # Spring Microservices - V2
 ## V2 of our most popular course - Microservices + Spring Cloud + Docker + Kubernetes
 
+## URLS
+
+- http://localhost:8080/limits
+- http://localhost:8888/limits-service/default
+
 
 ## Diagrams
 
