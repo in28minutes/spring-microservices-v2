@@ -173,10 +173,47 @@ From https://docs.spring.io
 	- Path Rewriting
 
 ---
+## Microservice Chain
+![](images/microservices/microservice-chain.png)
+- Complex call chain
+- How do you debug problems?
+- How do you trace requests across microservices?
+- Enter Distributed Tracing
+
+---
 <!-- .slide: class="onlydiagram" -->
-![](images/microservices/distributed-tracing.png)
+![](images/microservices/distributed-tracing-direct.png)
 ## Distributed Tracing
 
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/distributed-tracing.png)
+## Distributed Tracing - Asynchronous
+
+---
+## Microservices
+![](./images/microservices/microservice-example.png)
+- Enterprises are heading towards microservices architectures
+	- Build small focused microservices
+	- **Flexibility to innovate** and build applications in different programming languages (Go, Java, Python, JavaScript,  etc)
+	- BUT **deployments become complex**!
+	- How can we have **one way of deploying** Go, Java, Python or JavaScript .. microservices?
+		- Enter **containers**!
+
+---
+## Docker
+![](./images/microservices/docker.png)
+<!-- .slide: class="image-right image-fifty" -->
+
+- Create **Docker images** for each microservice
+- Docker image **contains everything a microservice needs** to run:
+	- Application Runtime (JDK or Python or NodeJS)
+	- Application code
+	- Dependencies 
+- You can run these docker containers **the same way** on any infrastructure
+	- Your local machine
+	- Corporate data center
+	- Cloud
 
 
 </script>

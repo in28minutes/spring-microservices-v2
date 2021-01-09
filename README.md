@@ -11,6 +11,17 @@
 
 ```
 digraph architecture {
+  rankdir=LR;
+node[shape=component]
+node[shape=record]
+node[style=filled,color="#59C8DE"]
+node[style=filled,color="#59C8DE"];
+
+Microservice1 -> Microservice2 -> Microservice3 -> Microservice4 -> Microservice5
+
+}
+
+digraph architecture {
   rankdir=TB;
 node[shape=component]
 node[shape=record]
@@ -160,6 +171,30 @@ NamingServer[label=<Naming Server>]
 
 ZipkinDistributedTracingServer
 ###############################
+digraph architecture {
+rankdir = TB;
+node[shape=component]
+node[shape="rect"]
+node[style=filled,color="#59C8DE"];
+
+Database[shape=cylinder]
+RabbitMQ[shape=underline,style=unfilled,color="#000000"]
+{rank=same; APIGateway, CurrencyCalculationService, CurrencyExchangeService};
+APIGateway -> CurrencyCalculationService -> CurrencyExchangeService
+CurrencyExchangeService -> RabbitMQ
+CurrencyCalculationService -> RabbitMQ;
+APIGateway -> RabbitMQ
+RabbitMQ -> ZipkinDistributedTracingServer
+ZipkinDistributedTracingServer -> Database
+
+  CurrencyCalculationService[label=<Currency Conversion Microservice>];
+CurrencyExchangeService[label=<Currency Exchange Microservice>];
+APIGateway[label=<API Gateway>];
+RabbitMQ[label=<Rabbit MQ>];
+ZipkinDistributedTracingServer[label=<Distributed Tracing Server>];
+}
+
+
 digraph architecture {
 rankdir = TB;
 node[shape=component]
