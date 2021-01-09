@@ -178,19 +178,16 @@ node[shape="rect"]
 node[style=filled,color="#59C8DE"];
 
 Database[shape=cylinder]
-RabbitMQ[shape=underline,style=unfilled,color="#000000"]
 {rank=same; APIGateway, CurrencyCalculationService, CurrencyExchangeService};
 APIGateway -> CurrencyCalculationService -> CurrencyExchangeService
-CurrencyExchangeService -> RabbitMQ
-CurrencyCalculationService -> RabbitMQ;
-APIGateway -> RabbitMQ
-RabbitMQ -> ZipkinDistributedTracingServer
+CurrencyExchangeService -> ZipkinDistributedTracingServer
+CurrencyCalculationService -> ZipkinDistributedTracingServer;
+APIGateway -> ZipkinDistributedTracingServer
 ZipkinDistributedTracingServer -> Database
 
-  CurrencyCalculationService[label=<Currency Conversion Microservice>];
+CurrencyCalculationService[label=<Currency Conversion Microservice>];
 CurrencyExchangeService[label=<Currency Exchange Microservice>];
 APIGateway[label=<API Gateway>];
-RabbitMQ[label=<Rabbit MQ>];
 ZipkinDistributedTracingServer[label=<Distributed Tracing Server>];
 }
 
