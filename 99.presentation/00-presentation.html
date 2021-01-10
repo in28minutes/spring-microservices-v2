@@ -173,7 +173,19 @@ From https://docs.spring.io
 	- Path Rewriting
 
 ---
-## Microservice Chain
+## Circuit Breaker
+![](images/microservices/microservice-chain.png)
+- What if one of the services is down or is slow?
+	- Impacts entire chain!
+- Questions:
+	- Can we return a fallback response if a service is down?
+	- Can we implement a Circuit Breaker pattern to reduce load?
+	- Can we retry requests in case of temporary failures?
+	- Can we implement rate limiting?
+- Solution: Circuit Breaker Framework - Resilience4j
+
+---
+## Distributed Tracing
 ![](images/microservices/microservice-chain.png)
 - Complex call chain
 - How do you debug problems?
