@@ -1867,3 +1867,19 @@ class SpringCloudConfigServerApplicationTests {
 }
 ```
 ---
+
+kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
+kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+kubectl scale deployment hello-world-rest-api --replicas=3
+kubectl delete pod hello-world-rest-api-58ff5dd898-62l9d
+kubectl autoscale deployment hello-world-rest-api --max=10 --cpu-percent=70
+kubectl edit deployment hello-world-rest-api #minReadySeconds: 15
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
+kubectl create configmap currency-conversion --from-literal=YOUR_PROPERTY=value --from-literal=YOUR_PROPERTY_2=value2
+kubectl autoscale deployment currency-exchange --min=1 --max=3 --cpu-percent=10 
+kubectl delete all -l app=hello-world-rest-api
+kubectl get events
+
+SPRING_ZIPKIN_BASEURL: http://zipkin:9411/
+kubectl set env RESOURCE/NAME KEY_1=VAL_1 ... KEY_N=VAL_N
+
