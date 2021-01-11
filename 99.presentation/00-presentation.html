@@ -200,7 +200,7 @@ From https://docs.spring.io
 ---
 <!-- .slide: class="onlydiagram" -->
 ![](images/microservices/distributed-tracing.png)
-## Distributed Tracing - Asynchronous	
+## Distributed Tracing - Asynchronous
 
 ---
 ## Microservices
@@ -227,7 +227,41 @@ From https://docs.spring.io
 	- Corporate data center
 	- Cloud
 
+---
+## Container Orchestration
+![](./images/microservices/container-orchestration.png) 
+<!-- .slide: class="image-right image-fifty" -->
+- **Requirement** : I want 10 instances of Microservice A container, 15 instances of Microservice B container and ....
+- Typical Features:
+	- **Auto Scaling** - Scale containers based on demand
+	- **Service Discovery** - Help microservices find one another
+	- **Load Balancer** - Distribute load among multiple instances of a microservice
+	- **Self Healing** - Do health checks and replace failing instances
+	- **Zero Downtime Deployments** - Release new versions without downtime
 
+---
+## Container Orchestration Options
+![](./images/microservices/container-orchestration.png) 
+<!-- .slide: class="image-right image-fifty" -->
+- **AWS Specific**
+	- AWS Elastic Container Service (ECS) 
+	- AWS Fargate : Serverless version of AWS ECS
+	- AWS Fargate does not have a free tier
+- **Cloud Neutral** - Kubernetes
+	- AWS - Elastic Kubernetes Service (EKS)
+	- Azure - Azure Kubernetes Service (AKS)
+	- GCP - Google Kubernetes Engine (GKE)
+	- EKS/AKS does not have a free tier!
+		- We use GCP and GKE!
+---
+## Kubernetes - Liveness and Readiness Probes
+![](images/microservices/microservice-chain.png)
+- Kubernetes uses probes to check the health of a microservice:	
+	- If readiness probe is not successful, no traffic is sent
+	- If liveness probe is not successful, pod is restarted
+- Spring Boot Actuator (>=2.3) provides inbuilt readiness and liveness probes:
+	- /health/readiness
+	- /health/liveness
 </script>
 			</section>
 

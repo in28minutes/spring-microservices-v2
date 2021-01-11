@@ -1868,8 +1868,13 @@ class SpringCloudConfigServerApplicationTests {
 ```
 ---
 
+kubectl create deployment currency-exchange --image=rangakaranam/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+kubectl expose deployment currency-exchange --type=LoadBalancer --port=8000
+
+kubectl get deployment currency-exchange -o yaml > deployment.yaml
+
 kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
-kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+
 kubectl scale deployment hello-world-rest-api --replicas=3
 kubectl delete pod hello-world-rest-api-58ff5dd898-62l9d
 kubectl autoscale deployment hello-world-rest-api --max=10 --cpu-percent=70
@@ -1883,3 +1888,13 @@ kubectl get events
 SPRING_ZIPKIN_BASEURL: http://zipkin:9411/
 kubectl set env RESOURCE/NAME KEY_1=VAL_1 ... KEY_N=VAL_N
 
+kubectl autoscale deployment hello-world-rest-api --max=10 --cpu-percent=70
+
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=DUMMY_IMAGE:TEST
+kubectl get events --sort-by=.metadata.creationTimestamp
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
+kubectl get events --sort-by=.metadata.creationTimestamp
+
+kubectl rollout history deployment hello-world-rest-api
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.3.RELEASE --record=true
+kubectl rollout undo deployment hello-world-rest-api --to-revision=1
