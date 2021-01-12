@@ -1,14 +1,16 @@
 # Docker
 
 ## Images
+
+- https://hub.docker.com/u/in28min
 - Currency Exchange Service 
-	- docker.io/in28min/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
+	- in28min/mmv2-currency-exchange-service:0.0.1-SNAPSHOT
 - Currency Conversion Service
-	- docker.io/in28min/mmv2-currency-conversion-service:0.0.1-SNAPSHOT
+	- in28min/mmv2-currency-conversion-service:0.0.1-SNAPSHOT
 - Eureka
-	- docker.io/in28min/mmv2-naming-server:0.0.1-SNAPSHOT
+	- in28min/mmv2-naming-server:0.0.1-SNAPSHOT
 - API GATEWAY
-	- docker.io/in28min/mmv2-api-gateway:0.0.1-SNAPSHOT
+	- in28min/mmv2-api-gateway:0.0.1-SNAPSHOT
 
 ## URLS
 

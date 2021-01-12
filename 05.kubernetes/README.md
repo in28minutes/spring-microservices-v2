@@ -1,10 +1,17 @@
 # Docker
 
 ## Images
+
+You can reuse these images instead of creating and pushing new container images
+
 - Currency Exchange Service 
-	- in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
+	- v11 - in28min/mmv2-currency-exchange-service:0.0.11-SNAPSHOT
+  - v12 - in28min/mmv2-currency-exchange-service:0.0.12-SNAPSHOT
 - Currency Conversion Service
 	- in28min/mmv2-currency-conversion-service:0.0.11-SNAPSHOT
+    - Uses CURRENCY_EXCHANGE_SERVICE_HOST
+  - in28min/mmv2-currency-conversion-service:0.0.12-SNAPSHOT
+    - Uses CURRENCY_EXCHANGE_URI
 
 ## URLS
 
