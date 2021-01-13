@@ -523,9 +523,9 @@ public interface CurrencyExchangeRepository
 ```
 
 ### Step 15
+---
 
 Create Currency Conversion Microservice using Spring Initializr.
----
 
 #### /currency-conversion-service/src/main/resources/application.properties Modified
 
@@ -536,9 +536,9 @@ server.port=8100
 
 
 ### Step 16
+---
 
 Step 16 - Creating a service for currency conversion
----
 
 #### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java New
 
@@ -672,9 +672,9 @@ public class CurrencyConversion {
 
 
 ### Step 17
+---
 
 Step 17 - Invoking Currency Exchange Microservice from Currency Conversion Microservice
----
 
 #### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionController.java Modified
 
@@ -727,9 +727,10 @@ public class CurrencyConversionController {
 
 
 ### Step 18
+---
 
 Step 18 - Using Feign REST Client for Service Invocation
----
+
 
 #### /currency-conversion-service/pom.xml Modified
 New Lines
@@ -793,9 +794,10 @@ public class CurrencyConversionController {
 ```
 
 ### Step 19
-
--  Step 19 - Understand Naming Server and Setting up Eureka Naming Server
 ---
+
+Step 19 - Understand Naming Server and Setting up Eureka Naming Server
+
 
 #### /naming-server/src/main/java/com/in28minutes/microservices/namingserver/NamingServerApplication.java Modified
 
@@ -831,9 +833,10 @@ eureka.client.fetch-registry=false
 ```
 
 ### Step 20
+---
 
 Step 20 - Connect Currency Conversion Microservice & Currency Exchange Microservice to Eureka
----
+
 
 #### /currency-conversion-service/src/main/resources/application.properties Modified
 New Lines
@@ -868,9 +871,9 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 
 
 ### Step 21
+---
 
 Step 21 - Load Balancing with Eureka, Feign & Spring Cloud LoadBalancer
----
 
 #### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyExchangeProxy.java Modified
 
