@@ -48,9 +48,90 @@
 
 				<script type="text/template">
 
----
 <!-- .slide: class="center" -->
 # Microservices
+---
+## Microservices with Spring Boot and Spring Cloud
+- Introduction to the Section
+---
+## What is a Microservice?
+- In the previous section, we talked about fuzzy world of Restful web services. Things get even more fuzzier with microservices. Definitions vary from ... to .. . These are just a couple of examples from a huge number of microservices definition. I don't want to get into the world of what is microservice and what is not a microservice and how to define it? Let's start with few things that are important for microservices.
+
+- Small autonomous services that work together - Sam Newman
+- In short, the microservice architectural style is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms often an HTTP resource API. These services are built around business capabilities and independently deployable by fully automated deployment machinery. There is a bare minimum of centralized management of these services, which may be written in different programming languages and use different data storage technologies. - James Lewis and Martin Fowler
+
+---
+## Microservices for me
+- REST
+- & Small Well Chosen Deployable Units
+- & Cloud Enabled
+- What is cloud enabled?
+- This is how it would look in microsevices architectures. 
+- Instead of one large monolith, you will be building a set of smaller microservices. I'm showing 5. It can be 10, 15 or 1000. These microservices have well defined boundaries and interact with each other. These are cloud enabled. You will have multiple instances for these microservices. We are looking at the production deployments for a set of microservices. At this moment, .. instances of microservice A.. etc. By cloud enabled, we mean if there is more load on microservice 3, I should be able to bring up a new instance of microservice 3. This should not involve a lot of configuration.
+- We already looked at REST web services, in the next sections of the course we will look at how to cloud enable them. How to setup an architecture which is dynamic? 
+- In this step, we took 10,000 foot look at microservices of what we think about microservices. Let's go deeper in the next step.
+
+
+---
+## Challenges
+- Bounded Context
+	- What do I mean?
+	- We will build 1000 microservices. How do I identify the boundary of each of these microservices. How do you decide what I should do and what I should not do? For new apps, this is especially difficult. You do NOT have enough knowledge. Deciding boundaries is an evolutionary process. Its not something that you would get it right the first time. Try and follow Domain Driven Design. Try to identify the right boundaries based on your knowledge at this point in time and be prepared to evolve. Important thing : Put the knowledge you gained back into microservices.
+- Configuration Management
+	- 5 or 50 microservices with multiple environments
+- Dynamic Scale Up and Scale Down
+	- Establishing the technology
+	- Load vary
+	- Bring up and Bring Down
+	- All this with Load Balancing
+- Visibility
+	- If there is a bug, how do find which microservice has a bug?
+	- Monitoring (Find microservices which are down, Find servers which have less disk space)
+- Pack of Cards
+	- If they are not well designed, microservice architectures can be like a pack of cards. If a microservice goes down
+	- Fault Tolerance
+---
+## SOLUTIONS
+- Spring Cloud and components under umbrella. Look at the website!
+- Spring Cloud is not one project.
+- CENTRALIZED CONFIGURATION MANAGEMENT (Spring Cloud Config Server)
+- LOCATION TRANSPARANCY (Naming Server (Eureka))
+- LOAD DISTRIBUTION - Ribbon (Client Side)
+- VISIBILITY AND MONITORING
+	- Zipkin Distributed Tracing 
+	- Netflix API Gateway
+- FAULT TOLERANCE
+	- Hystrix
+
+---
+## Advantages
+- 3 Most important advantages
+- New Technology & Process Adoption
+- Dynamic Scaling (Cloud Enabled and use Cloud)
+- Faster Release Cycles (Small Microservices => Easier Changes)
+
+- Standardizing Ports
+
+---
+## Need for Centralized Configuration
+- How Spring Cloud Config helps?
+	- Each microservice has its own configuration
+		- External Services, Database, Queue or Typical Application Configuration
+		- Multiple environments
+	- Managing configuration individually will be difficult
+	- Explain Spring Cloud Config Server
+	- Explain what will be doing in the next few steps!
+	- Should we give a sneak preview of what we will be able to achieve by end of the course?
+
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/microservice-chain.png)
+![](images/microservices/microservice-instances.png)
+## Monolith
+---
+<!-- .slide: class="onlydiagram" -->
+![](images/microservices/monolith.png)
+## Monolith
 
 ---
 <!-- .slide: class="onlydiagram" -->
