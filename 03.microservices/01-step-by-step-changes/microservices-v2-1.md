@@ -51,8 +51,8 @@ Final
 
 ## Code Changes
 
+---
 ### Step 02
-
 ---
 
 #### /limits-service/src/main/java/com/in28minutes/microservices/limitsservice/bean/Limits.java New
@@ -113,9 +113,8 @@ public class LimitsController {
 }
 ```
 
-
+---
 ### Step 03
-
 ---
 
 #### /limits-service/src/main/java/com/in28minutes/microservices/limitsservice/configuration/Configuration.java New
@@ -184,8 +183,8 @@ limits-service.minimum=3
 limits-service.maximum=997
 ```
 
+---
 ### Step 04
-
 ---
 
 Changes after setting up Cloud Config Server listed below
@@ -197,8 +196,8 @@ spring.application.name=spring-cloud-config-server
 server.port=8888
 ```
 
+---
 ### Step 05
-
 ---
 
 ```
@@ -214,8 +213,8 @@ limits-service.minimum=4
 limits-service.maximum=996
 ```
 
+---
 ### Step 06
-
 ---
 
 #### /spring-cloud-config-server/src/main/java/com/in28minutes/microservices/springcloudconfigserver/SpringCloudConfigServerApplication.java Modified
@@ -233,8 +232,8 @@ spring.cloud.config.server.git.uri=file:///in28Minutes/git/spring-microservices-
 #spring.cloud.config.server.git.uri=file:///C:/Users/home/Desktop/yourProject/git-repo
 ```
 
+---
 ### Step 07
-
 ---
 
 #### /limits-service/src/main/resources/application.properties Modified
@@ -245,8 +244,8 @@ spring.application.name=limits-service
 spring.config.import=optional:configserver:http://localhost:8888
 ```
 
+---
 ### Step 08
-
 ---
 
 #### /limits-service/src/main/resources/application.properties Modified
@@ -292,8 +291,8 @@ limits-service.minimum=4
 limits-service.maximum=996
 ```
 
+---
 ### Step 10
-
 ---
 
 #### /currency-exchange-service/src/main/resources/application.properties Modified
@@ -303,8 +302,8 @@ spring.application.name=currency-exchange
 server.port=8000
 ```
 
+---
 ### Step 11
-
 ---
 
 #### /currency-exchange-service/pom.xml Modified
@@ -459,8 +458,8 @@ insert into currency_exchange
 values(10003,'AUD','INR',25,'');
 ```
 
+---
 ### Step 14
-
 ---
 
 #### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeController.java Modified
@@ -522,6 +521,7 @@ public interface CurrencyExchangeRepository
 }
 ```
 
+---
 ### Step 15
 ---
 
@@ -534,7 +534,7 @@ spring.application.name=currency-conversion
 server.port=8100
 ```
 
-
+---
 ### Step 16
 ---
 
@@ -670,7 +670,7 @@ public class CurrencyConversion {
 }
 ```
 
-
+---
 ### Step 17
 ---
 
@@ -725,7 +725,7 @@ public class CurrencyConversionController {
 
 
 
-
+---
 ### Step 18
 ---
 
@@ -793,6 +793,7 @@ public class CurrencyConversionController {
 }
 ```
 
+---
 ### Step 19
 ---
 
@@ -832,6 +833,7 @@ eureka.client.register-with-eureka=false
 eureka.client.fetch-registry=false
 ```
 
+---
 ### Step 20
 ---
 
@@ -869,7 +871,7 @@ New Lines
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ```
 
-
+---
 ### Step 21
 ---
 
@@ -887,6 +889,7 @@ public interface CurrencyExchangeProxy {
 	
 ```
 
+---
 ### Step 22
 ---
 
@@ -901,6 +904,7 @@ server.port=8765
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ```
 
+---
 ### Step 23
 ---
 
@@ -918,6 +922,7 @@ spring.cloud.gateway.discovery.locator.enabled=true
 spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
 ```
 
+---
 ### Step 24
 ---
 
@@ -974,6 +979,7 @@ public class ApiGatewayConfiguration {
 }
 ```
 
+---
 ### Step 25
 ---
 
@@ -1009,7 +1015,7 @@ public class LoggingFilter implements GlobalFilter {
 }
 ```
 
-
+---
 ### Step 26
 ---
 
