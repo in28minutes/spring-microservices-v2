@@ -1,11 +1,6 @@
-## V2 Course Updates
+## Microservice V2 Course Updates - FAQ
 
-Really excited to announce amazing updates to the course!
-
-**Great News! We are adding Docker and Kubernetes to the course!**
-
-
-## FAQ
+Really excited to announce amazing updates to the course! **Great News! We are adding Docker and Kubernetes to the course!**
 
 #### What are the new sections?
 
