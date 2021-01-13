@@ -2,7 +2,7 @@
 
 ### Spring Boot & Spring Cloud Versions
 
-```
+```xml
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -180,7 +180,7 @@ public class LimitsController {
 ---
 ##### /limits-service/src/main/resources/application.properties Modified
 New Lines
-```
+```properties
 limits-service.minimum=3
 limits-service.maximum=997
 ```
@@ -218,7 +218,7 @@ limits-service.maximum=996
 ##### /spring-cloud-config-server/src/main/java/com/in28minutes/microservices/springcloudconfigserver/SpringCloudConfigServerApplication.java Modified
 
 New Lines
-```
+```java
 import org.springframework.cloud.config.server.EnableConfigServer;
 @EnableConfigServer
 ```
@@ -226,7 +226,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 ---
 ##### /spring-cloud-config-server/src/main/resources/application.properties Modified
 New Lines
-```
+```properties
 spring.cloud.config.server.git.uri=file:///in28Minutes/git/spring-microservices-v2/03.microservices/git-localconfig-repo
 #spring.cloud.config.server.git.uri=file:///C:/Users/home/Desktop/yourProject/git-repo
 ```
@@ -236,7 +236,7 @@ spring.cloud.config.server.git.uri=file:///in28Minutes/git/spring-microservices-
 ##### /limits-service/src/main/resources/application.properties Modified
 
 New Lines
-```
+```properties
 spring.application.name=limits-service
 spring.config.import=optional:configserver:http://localhost:8888
 ```
@@ -245,7 +245,7 @@ spring.config.import=optional:configserver:http://localhost:8888
 
 ##### /limits-service/src/main/resources/application.properties Modified
 New Lines
-```
+```properties
 spring.profiles.active=qa
 spring.cloud.config.profile=qa
 #spring.cloud.config.name=
@@ -304,7 +304,7 @@ server.port=8000
 
 ##### /currency-exchange-service/pom.xml Modified
 New Lines
-```
+```xml
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -436,7 +436,7 @@ public class CurrencyExchangeController {
 
 ##### /currency-exchange-service/src/main/resources/application.properties Modified
 New Lines
-```
+```properties
 spring.jpa.show-sql=true
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.h2.console.enabled=true
@@ -444,7 +444,7 @@ spring.h2.console.enabled=true
 
 ##### /currency-exchange-service/src/main/resources/data.sql New
 
-```
+```sql
 insert into currency_exchange
 (id,currency_from,currency_to,conversion_multiple,environment)
 values(10001,'USD','INR',65,'');
@@ -727,7 +727,7 @@ public class CurrencyConversionController {
 
 ##### /currency-conversion-service/pom.xml Modified
 New Lines
-```
+```xml
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -830,13 +830,13 @@ eureka.client.fetch-registry=false
 
 ##### /currency-conversion-service/src/main/resources/application.properties Modified
 New Lines
-```
+```properties
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ```
 
 ##### /currency-conversion-service/pom.xml Modified
 New Lines
-```
+```xml
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -846,7 +846,7 @@ New Lines
 
 ##### /currency-exchange-service/pom.xml Modified
 New Lines
-```
+```xml
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -855,7 +855,7 @@ New Lines
 ```
 ##### /currency-exchange-service/src/main/resources/application.properties Modified
 New Lines
-```
+```properties
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 ```
 
@@ -1005,7 +1005,7 @@ Changes for:
 
 ##### /currency-exchange-service/pom.xml Modified
 New Lines
-```
+```xml
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -1061,7 +1061,7 @@ public class CircuitBreakerController {
 
 ##### /currency-exchange-service/src/main/resources/application.properties Modified
 New Lines
-```
+```properties
 resilience4j.retry.instances.sample-api.maxRetryAttempts=5
 resilience4j.retry.instances.sample-api.waitDuration=1s
 resilience4j.retry.instances.sample-api.enableExponentialBackoff=true
