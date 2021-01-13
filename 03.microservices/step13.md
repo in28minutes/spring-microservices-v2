@@ -562,44 +562,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class CurrencyExchangeController {
 	
 	@Autowired
-	private CurrencyExchangeRepository repository;
-	
-	@Autowired
 	private Environment environment;
 	
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
 	public CurrencyExchange retrieveExchangeValue(
 			@PathVariable String from,
 			@PathVariable String to) {
-		CurrencyExchange currencyExchange 
-					= repository.findByFromAndTo(from, to);
-		
-		if(currencyExchange ==null) {
-			throw new RuntimeException
-				("Unable to Find data for " + from + " to " + to);
-		}
-		
+		CurrencyExchange currencyExchange = new CurrencyExchange(1000L, from, to, 
+						BigDecimal.valueOf(50));
 		String port = environment.getProperty("local.server.port");
 		currencyExchange.setEnvironment(port);
-		
 		return currencyExchange;
 		
 	}
 
-}
-```
----
-
-### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeRepository.java
-
-```java
-package com.in28minutes.microservices.currencyexchangeservice;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface CurrencyExchangeRepository 
-	extends JpaRepository<CurrencyExchange, Long> {
-	CurrencyExchange findByFromAndTo(String from, String to);
 }
 ```
 ---
@@ -724,136 +700,6 @@ public class SpringCloudConfigServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCloudConfigServerApplication.class, args);
-	}
-
-}
-```
----
-
-### /currency-conversion-service/pom.xml
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.in28minutes.microservices</groupId>
-	<artifactId>currency-conversion-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>currency-conversion-service</name>
-	<description>Demo project for Spring Boot</description>
-
-	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
-	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-	</repositories>
-
-</project>
-```
----
-
-### /currency-conversion-service/src/test/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionServiceApplicationTests.java
-
-```java
-package com.in28minutes.microservices.currencyconversionservice;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class CurrencyConversionServiceApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
-```
----
-
-### /currency-conversion-service/src/main/resources/application.properties
-
-```properties
-spring.application.name=currency-conversion
-server.port=8100
-```
----
-
-### /currency-conversion-service/src/main/java/com/in28minutes/microservices/currencyconversionservice/CurrencyConversionServiceApplication.java
-
-```java
-package com.in28minutes.microservices.currencyconversionservice;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class CurrencyConversionServiceApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(CurrencyConversionServiceApplication.class, args);
 	}
 
 }
