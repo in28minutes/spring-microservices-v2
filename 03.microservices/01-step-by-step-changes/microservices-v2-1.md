@@ -57,11 +57,67 @@ Final
 - http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 
 
-## Code Changes
+## Debugging Guides
+
+---
+### Spring Cloud Config Server - Steps 01 to 08
+---
+
+(1) Does the URL http://localhost:8888/limits-service/default work? If the URL does not work, check if you have the same name for limits-service in (a) spring.application.name in bootstrap.properties (b) in the URL (c) in the name of the property file
+
+(2) Check if the name in @ConfigurationProperties("limits-service") matches the prefix of property values in application.properties. limits-service.minimum=9 limits-service.maximum=999
+
+(3) Check if you have @EnableConfigServer enabled on SpringCloudConfigServerApplication class
+
+(4) Check if you have the right repository url in /spring-cloud-config-server/src/main/resources/application.properties - spring.cloud.config.server.git.uri=file:///in28Minutes/git/spring-micro-services/03.microservices/git-localconfig-repo
+
+(5) Do not have any spaces in your git repository path.
+
+(6) If you are on windows, make sure that you are using one of these formats for your git repository
+
+```
+file:///C:/microservices/git-localconfig-repo
+file:\\C:/WORKSPACE/GIT/git-localconfig-repo 
+file:///C:/Users/Gautham/Documents/workspace-sts-3.9.4.RELEASE/git-localconfig-repo
+file:\\C:/Users/Gautham/Documents/workspace-sts-3.9.4.RELEASE/git-localconfig-repo
+```
+
+(7) Make sure that you have the right code - Compare against the code for Step 01 to Step 08 below.
+
+(8) Make sure that you have committed all the code to GIT Local Repo
+
+If everything is fine
+
+(1) Stop all the servers
+
+(2) Launch Config Server First
+
+(3) Launch Limits Service
+
+(4) Wait for 2 minutes
+
+
+If you still have a problem, post a question including all the details:
+
+(1) What Step was code working until?
+
+(2) What is the step where you are facing a Problem?
+
+(3) Response for http://localhost:8080/limits
+
+(4) Response for http://localhost:8888/limits-service/default
+
+(5) Response for http://localhost:8888/limits-service/dev
+
+(6) Start up logs for limits-service and spring cloud config server with debug mode enabled
+
+(7) All code for files shown below from Step 01 to Step 08.
 
 ---
 ### Step 01
 ---
+
+Step 01 - Setting up Limits Microservice
 
 On Spring Initializr, choose:
 - Group Id: com.in28minutes.microservices
@@ -75,6 +131,8 @@ On Spring Initializr, choose:
 ---
 ### Step 02
 ---
+
+Step 02 - Creating a hard coded limits service
 
 #### /limits-service/src/main/java/com/in28minutes/microservices/limitsservice/bean/Limits.java New
 
@@ -137,6 +195,8 @@ public class LimitsController {
 ---
 ### Step 03
 ---
+
+Step 03 - Enhance limits service to pick up configuration from application properties
 
 #### /limits-service/src/main/java/com/in28minutes/microservices/limitsservice/configuration/Configuration.java New
 
@@ -208,6 +268,8 @@ limits-service.maximum=997
 ### Step 04
 ---
 
+Step 04 - Setting up Spring Cloud Config Server
+
 On Spring Initializr, choose:
 - Group Id: com.in28minutes.microservices
 - Artifact Id: spring-cloud-config-server
@@ -226,6 +288,8 @@ server.port=8888
 ### Step 05
 ---
 
+Step 05 - Installing Git and Creating Local Git Repository
+
 ```
 git init
 git add *
@@ -242,6 +306,8 @@ limits-service.maximum=996
 ---
 ### Step 06
 ---
+
+Step 06 - Connect Spring Cloud Config Server to Local Git Repository
 
 #### /spring-cloud-config-server/src/main/java/com/in28minutes/microservices/springcloudconfigserver/SpringCloudConfigServerApplication.java Modified
 
@@ -267,6 +333,10 @@ spring.cloud.config.server.git.uri=file:///in28Minutes/git/spring-microservices-
 ### Step 07
 ---
 
+Step 07 - Connect Limits Service to Spring Cloud Config Server
+
+
+URLS
 - http://localhost:8888/limits-service/default
 
 #### /limits-service/src/main/resources/application.properties Modified
@@ -284,6 +354,8 @@ limits-service.maximum=997
 ---
 ### Step 08
 ---
+
+Step 08 - Configuring Profiles for Limits Service
 
 - http://localhost:8888/limits-service/default
 - http://localhost:8888/limits-service/qa
@@ -341,9 +413,12 @@ limits-service.minimum=4
 limits-service.maximum=996
 ```
 
+
 ---
 ### Step 10
 ---
+
+Step 10 - Setting up Currency Exchange Microservice
 
 On Spring Initializr, choose:
 - Group Id: com.in28minutes.microservices
@@ -365,6 +440,8 @@ server.port=8000
 ---
 ### Step 11
 ---
+
+Step 11 - Create a simple hard coded currency exchange service
 
 URL
 - http://localhost:8000/currency-exchange/from/USD/to/INR
@@ -476,6 +553,9 @@ public class CurrencyExchangeController {
 ---
 ### Step 12
 ---
+
+Step 12 - Setting up Dynamic Port in the the Response
+
 
 - VM Arguments : -Dserver.port=8001 to launch on 8001
 
@@ -595,6 +675,8 @@ public class CurrencyExchange {
 ### Step 13
 ---
 
+Step 13 - Configure JPA and Initialized Data
+
 #### /currency-exchange-service/pom.xml Modified
 New Lines
 ```xml
@@ -663,6 +745,8 @@ values(10003,'AUD','INR',25,'');
 ### Step 14
 ---
 
+Step 14 - Create a JPA Repository
+
 #### /currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeController.java Modified
 
 
@@ -725,6 +809,8 @@ public interface CurrencyExchangeRepository
 ---
 ### Step 15
 ---
+
+Step 15 - Setting up Currency Conversion Microservice
 
 On Spring Initializr, choose:
 - Group Id: com.in28minutes.microservices
@@ -947,6 +1033,37 @@ public class CurrencyConversionController {
 }
 ```
 
+
+---
+### Debugging problems with Feign
+---
+
+(1) Ensure that you have the annotation @EnableFeignClients with right packages on the class public class CurrencyConversionServiceApplication @EnableFeignClients("com.in28minutes.microservices.currencyconversionservice")
+
+(2) Ensure you have path variables defined for from and to with the key from and to as shown in CurrencyExchangeServiceProxy - @PathVariable("from") String from, @PathVariable("to") String to
+
+If everything is fine
+
+(-1) What Step was code working until?
+
+(0) What is the step where you are facing a Problem?
+
+(1) Make sure you start the services in this order (a)currency-exchange-service (b)currency-conversion-service
+
+(2) Give a minute of warm up time!
+
+If you still have a problem, post a question including all the details:
+
+(1) Responses from all 3 URLs - http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10, http://localhost:8000/currency-exchange/from/EUR/to/INR and http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+
+(3) Start up logs of the each of the components to understand what's happening in the background!
+
+(4) What was the last working state of the application? Explain in Detail.
+
+(5) What is the version of Spring Boot and Spring Cloud you are using?
+
+(6) Post Code for all the components listed below in Step 18 and Step 19.
+
 ---
 ### Step 18
 ---
@@ -1017,6 +1134,60 @@ public class CurrencyConversionController {
 
 }
 ```
+
+
+---
+### Eureka - Step 19 to 21
+---
+
+If you see an error of this kind - Wait for 5 minutes and give it a try again!
+
+```
+com.netflix.client.ClientException: Load balancer does not have available server for client: 
+```
+
+(1) Ensure @EnableEurekaServer is enabled on NetflixEurekaNamingServerApplication
+
+(2) spring-cloud-starter-netflix-eureka-client dependency is added in both the client application pom.xml files.
+
+(3) eureka.client.service-url.default-zone=http://localhost:8761/eureka is configured in application.properties of both currency-exchange-service and currency-conversion-service
+
+(4) Ensure that both the services are registered with Eureka at http://localhost:8761/.
+
+(5) Ensure that you are using the right url - http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+(6) Ensure that you are able to hit the urls directly - http://localhost:8000/currency-exchange/from/USD/to/INR and http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+
+(8) Try if it works when you include the following property in application.properties for currency-conversion-service and currency-exchange-service
+
+```
+eureka.instance.hostname=localhost
+```
+(9) Compare code against the complete list of components below (Step 19 to Step 21).
+
+If everything is fine
+
+(1) Make sure you start the services in this order (a)netflix-eureka-naming-server (b)currency-exchange-service (c)currency-conversion-service
+
+(2) Make sure all the components are registered with naming server.
+
+(3) Give a minute of warm up time!
+
+(4) If you get an error once, execute it again after a few minutes
+
+If you still have a problem, post a question including all the details:
+
+(1) Screenshot of services registration with Eureka
+
+(2) Responses from all 3 URLs - http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10, http://localhost:8000/currency-exchange/from/EUR/to/INR and http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+
+(3) Start up logs of the each of the components to understand what's happening in the background!
+
+(4) What was the last working state of the application? Explain in Detail.
+
+(5) Post the version of Spring Boot and Spring Cloud You are Using.
+
+(6) Code for all the components listed below (Step 19 to Step 21):
 
 ---
 ### Step 19
@@ -1115,6 +1286,84 @@ import org.springframework.cloud.openfeign.FeignClient;
 public interface CurrencyExchangeProxy {
 	
 ```
+
+---
+### Spring Cloud API Gateway - Step 22 to Step 25
+---
+
+(0) Make sure you are using the right URLs?
+
+Discovery
+- http://localhost:8765/CURRENCY-EXCHANGE/currency-exchange/from/USD/to/INR
+- http://localhost:8765/CURRENCY-CONVERSION/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/CURRENCY-CONVERSION/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+LowerCase
+- http://localhost:8765/currency-exchange/currency-exchange/from/USD/to/INR
+- http://localhost:8765/currency-conversion/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+Discovery Disabled and Custom Routes Configured
+- http://localhost:8765/currency-exchange/from/USD/to/INR
+- http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
+- http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
+
+
+(1) Are you using right configuration?
+
+```
+spring.application.name=api-gateway
+server.port=8765
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+#spring.cloud.gateway.discovery.locator.enabled=true
+#spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
+```
+
+(2) Compare against the code for ApiGatewayConfiguration below?
+
+(3) Compare against the code for LoggingFilter below?
+
+(4) Ensure that all the three services are registered with Eureka at http://localhost:8761/.
+
+(5) Try if it works when you include the following property in application.properties for currency-conversion-service and currency-exchange-service
+
+```
+eureka.instance.hostname=localhost
+```
+
+(6) Compare code against the complete list of components below.
+
+
+If everything is fine
+
+(1) Make sure you start the services in this order (a) netflix-eureka-naming-server (b) netflix-zuul-api-gateway-server (c)currency-exchange-service (d)currency-conversion-service
+
+(2) Make sure all the components are registered with naming server.
+
+(3) Give a minute of warm up time!
+
+(4) If you get an error once, execute it again after 5 minutes
+
+If you still have a problem, post a question including all the details:
+
+(1) Screenshot of services registration with Eureka
+
+(2) Responses from all the 5 URLs - http://localhost:8100/currency-conversion-feign/from/EUR/to/INR/quantity/10000, http://localhost:8000/currency-exchange/from/EUR/to/INR, http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10 and the URLs listed above!
+
+(3) Start up logs of the each of the components to understand what's happening in the background!
+
+(4) If you still get an error, post the logs of the each of the components to understand what's happening in the background!
+
+(5) What was the last working state of the application? Explain in Detail.
+
+(6) Post the version of Spring Boot and Spring Cloud You are Using.
+
+(7) Post Code for all the components listed below:
+
+
 
 ---
 ### Step 22
