@@ -1526,7 +1526,11 @@ public class LoggingFilter implements GlobalFilter {
 ```
 
 ---
-### Step 26
+### Circuit Breaker - 26 to 29
+---
+
+---
+### Step 26 to 29
 ---
 
 Changes for:
