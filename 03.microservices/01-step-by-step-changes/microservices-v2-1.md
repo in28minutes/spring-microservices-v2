@@ -34,14 +34,8 @@
 		- [Step 25](#step-25)
 	- [Circuit Breaker](#circuit-breaker---26-to-29)
 		- [Step 26 to 29](#step-26-to-29)
-				- [/currency-exchange-service/pom.xml Modified](#currency-exchange-servicepomxml-modified-2)
-				- [/currency-exchange-service/src/main/java/com/in28minutes/microservices/currencyexchangeservice/CircuitBreakerController.java New](#currency-exchange-servicesrcmainjavacomin28minutesmicroservicescurrencyexchangeservicecircuitbreakercontrollerjava-new)
-				- [/currency-exchange-service/src/main/resources/application.properties Modified](#currency-exchange-servicesrcmainresourcesapplicationproperties-modified-3)
 	- [Docker Section - Connect Microservices with Zipkin](#docker-section---connect-microservices-with-zipkin)
 		- [Docker Step 12](#docker-step-12)
-			- [application.properties](#applicationproperties)
-			- [pom.xml](#pomxml)
-
 
 ## Spring Boot & Spring Cloud Versions
 
