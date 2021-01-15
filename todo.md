@@ -2,24 +2,25 @@
 
 - Course Downloads:
 	- Update PPT (Kubernetes and Docker)
-	- Arrange in the flow followed in the course
 	- PDF
-- For new version v2 of the course:
-	- Introduction to Microservices
-	- Challenges
-	- Spring Cloud
-	- Advantages
-	- Standardization of Ports
-	- Introduction to Centralized Configuration <-> Limits Service
-	- What Next? Promo Video
-	- High Availability for Eureka?  https://stackoverflow.com/questions/38549902/eureka-server-how-to-achieve-high-availability
-- Spring & Spring Boot Tips:
-	- Versioning - Spring Boot and Spring Cloud
-	- Yaml Properties
-	- Lombok
-	- What else to Add?
+- Videos:
+	- For new version v2 of the course:
+		- Introduction to Microservices
+		- Challenges
+		- Spring Cloud
+		- Advantages
+		- Standardization of Ports
+		- Introduction to Centralized Configuration <-> Limits Service
+		- What Next? Promo Video
+		- Debugging Guide - https://github.com/in28minutes/spring-microservices-v2/blob/main/03.microservices/01-step-by-step-changes/microservices-v2-1.md#pomxml
+		- High Availability for Eureka?  https://stackoverflow.com/questions/38549902/eureka-server-how-to-achieve-high-availability
+	- Spring & Spring Boot Tips:
+		- Versioning - Spring Boot and Spring Cloud
+		- Yaml Properties
+		- Lombok
+		- What else to Add?
+		- Connecting to MySQL
 - Distribute the message:
 	- More Educational Announcements
 	- Video on YouTube
 	- Post on LinkedIn
-- Take inputs from Debugging Guides and add them to new one
