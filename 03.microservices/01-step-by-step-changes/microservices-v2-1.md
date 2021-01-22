@@ -1075,9 +1075,20 @@ public class CurrencyConversionController {
 ### Debugging problems with Feign
 ---
 
+A number of stuedent
+
 (1) Ensure that you have the annotation @EnableFeignClients with right packages on the class public class CurrencyConversionServiceApplication @EnableFeignClients("com.in28minutes.microservices.currencyconversionservice")
 
 (2) Ensure you have path variables defined for from and to with the key from and to as shown in CurrencyExchangeServiceProxy - @PathVariable("from") String from, @PathVariable("to") String to
+
+NOTE : Some students reported adding "from" and "to" to @PathVariables helped!
+
+```
+	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	public CurrencyConversion retrieveExchangeValue(
+			@PathVariable("from") String from,
+			@PathVariable("to") String to);
+```
 
 If everything is fine
 
@@ -1136,8 +1147,8 @@ public interface CurrencyExchangeProxy {
 	
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
 	public CurrencyConversion retrieveExchangeValue(
-			@PathVariable String from,
-			@PathVariable String to);
+			@PathVariable("from") String from,
+			@PathVariable("to") String to);
 
 }
 ```
@@ -1183,13 +1194,25 @@ If you see an error of this kind - Wait for 5 minutes and give it a try again!
 com.netflix.client.ClientException: Load balancer does not have available server for client: 
 ```
 
+(0) Give these settings a try individually in application.properties of all microservices (currency-exchange, currency-conversion, api-gateway) to see if they help
+
+```
+eureka.instance.prefer-ip-address=true
+```
+
+OR
+
+```
+eureka.instance.hostname=localhost
+```
+
 (1) Ensure @EnableEurekaServer is enabled on NetflixEurekaNamingServerApplication
 
 (2) spring-cloud-starter-netflix-eureka-client dependency is added in both the client application pom.xml files.
 
 (3) eureka.client.service-url.default-zone=http://localhost:8761/eureka is configured in application.properties of both currency-exchange-service and currency-conversion-service
 
-(4) Ensure that both the services are registered with Eureka at http://localhost:8761/.
+(4) Ensure that both the services are registered with Eureka at http://localhost:8761/
 
 (5) Ensure that you are using the right url - http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
 
@@ -1328,6 +1351,18 @@ public interface CurrencyExchangeProxy {
 ### Spring Cloud API Gateway - Step 22 to Step 25
 ---
 
+(-2) Give these settings a try individually in application.properties of all microservices (currency-exchange, currency-conversion, api-gateway) to see if they help
+
+```
+eureka.instance.prefer-ip-address=true
+```
+
+OR
+
+```
+eureka.instance.hostname=localhost
+```
+
 (0) Make sure you are using the right URLs?
 
 Discovery
@@ -1371,7 +1406,19 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 eureka.instance.hostname=localhost
 ```
 
-(6) Compare code against the complete list of components below.
+(6) Some student reported success when using lower-case-service-id instead of spring.cloud.gateway.discovery.locator.lowerCaseServiceId. See if it helps!
+
+```
+spring.cloud.gateway.discovery.locator.enabled=true
+
+spring.cloud.gateway.discovery.locator.lower-case-service-id=true
+
+#spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
+
+
+```
+
+(7) Compare code against the complete list of components below.
 
 
 If everything is fine

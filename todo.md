@@ -20,6 +20,7 @@
 		- Lombok
 		- What else to Add?
 		- Connecting to MySQL
+		- You would need to install the Spring Eclipse plugin. https://marketplace.eclipse.org/content/spring-ide#group-external-install-button
 - Distribute the message:
 	- More Educational Announcements
 	- Video on YouTube
