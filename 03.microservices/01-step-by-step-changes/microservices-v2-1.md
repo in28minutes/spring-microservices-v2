@@ -100,6 +100,9 @@ Final
 ### Spring Cloud Config Server - Steps 01 to 08
 ---
 
+(0) Do you get this error 'org.springframework.cloud.config.server.environment.NoSuchLabelException: No such label: master`?  Add this in application.properties: 'spring.cloud.config.server.git.default-label=main`
+
+
 (1) Does the URL http://localhost:8888/limits-service/default work? If the URL does not work, check if you have the same name for limits-service in (a) spring.application.name in bootstrap.properties (b) in the URL (c) in the name of the property file
 
 (2) Check if the name in @ConfigurationProperties("limits-service") matches the prefix of property values in application.properties. limits-service.minimum=9 limits-service.maximum=999
