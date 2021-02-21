@@ -58,6 +58,7 @@ services:
       - "9411:9411"
     networks:
       - currency-network
+    restart: always #Restart if there is a problem starting up
 
 networks:
   currency-network:

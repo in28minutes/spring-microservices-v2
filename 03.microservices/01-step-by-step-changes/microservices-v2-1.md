@@ -1078,8 +1078,6 @@ public class CurrencyConversionController {
 ### Debugging problems with Feign
 ---
 
-A number of stuedent
-
 (1) Ensure that you have the annotation @EnableFeignClients with right packages on the class public class CurrencyConversionServiceApplication @EnableFeignClients("com.in28minutes.microservices.currencyconversionservice")
 
 (2) Ensure you have path variables defined for from and to with the key from and to as shown in CurrencyExchangeServiceProxy - @PathVariable("from") String from, @PathVariable("to") String to
@@ -1697,6 +1695,26 @@ resilience4j.bulkhead.instances.sample-api.maxConcurrentCalls=10
 
 
 ## Docker Section - Connect Microservices with Zipkin
+
+(1) Compare and try with the Docker Compose Backup files here:
+- (5 Docker Compose Backup Files)[https://github.com/in28minutes/spring-microservices-v2/tree/main/04.docker/backup]
+
+(2) Try adding `restart: always` to zipkin-server in docker-compose.yaml
+
+```
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-network
+    environment:
+      RABBIT_URI: amqp://guest:guest@rabbitmq:5672
+    depends_on:
+      - rabbitmq
+    restart: always #Restart if there is a problem starting up
+```
 
 ### Docker Step 12
 
