@@ -1614,6 +1614,12 @@ public class LoggingFilter implements GlobalFilter {
 ### Circuit Breaker - 26 to 29
 ---
 
+Can you use maxAttempts instead of maxRetryAttempts?
+```
+resilience4j.retry.instances.sample-api.maxAttempts=5 #NEW
+#resilience4j.retry.instances.sample-api.maxRetryAttempts=5 #OLD
+```
+
 ---
 ### Step 26 to 29
 ---
@@ -1683,7 +1689,9 @@ public class CircuitBreakerController {
 #### /currency-exchange-service/src/main/resources/application.properties Modified
 New Lines
 ```properties
-resilience4j.retry.instances.sample-api.maxRetryAttempts=5
+resilience4j.retry.instances.sample-api.maxAttempts=5 #NEW
+#resilience4j.retry.instances.sample-api.maxRetryAttempts=5 #OLD
+
 resilience4j.retry.instances.sample-api.waitDuration=1s
 resilience4j.retry.instances.sample-api.enableExponentialBackoff=true
 #resilience4j.circuitbreaker.instances.default.failureRateThreshold=90
