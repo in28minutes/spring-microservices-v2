@@ -1,4 +1,4 @@
-# Spring Microservices - V2
+# Spring Microservices - V2 - Microservices + Spring Boot + Spring Cloud + Docker + Kubernetes
 
 #### V2 of our most popular course - Microservices + Spring Cloud + Docker + Kubernetes
 
