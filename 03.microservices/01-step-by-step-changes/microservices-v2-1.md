@@ -717,6 +717,13 @@ public class CurrencyExchange {
 
 Step 13 - Configure JPA and Initialized Data
 
+- If you are Spring Boot >=2.5.0, You would need to configure this in application.properties `spring.jpa.defer-datasource-initialization=true` 
+	- OR use schema.sql instead of data.sql
+	- More details - https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.5.0-M3-Release-Notes#hibernate-and-datasql
+- Complete debugging guide for problems with JPA and Hibernate: https://github.com/in28minutes/in28minutes-initiatives/blob/master/The-in28Minutes-TroubleshootingGuide-And-FAQ/jpa-and-hibernate.md#tables-are-not-created
+
+
+
 #### /currency-exchange-service/pom.xml Modified
 New Lines
 ```xml
@@ -764,7 +771,7 @@ spring.h2.console.enabled=true
 
 spring.application.name=currency-exchange
 server.port=8000
-
+spring.jpa.defer-datasource-initialization=true # For >2.5.0
 ```
 
 #### /currency-exchange-service/src/main/resources/data.sql New
@@ -1614,11 +1621,26 @@ public class LoggingFilter implements GlobalFilter {
 ### Circuit Breaker - 26 to 29
 ---
 
-Can you use maxAttempts instead of maxRetryAttempts?
+(0) Can you use maxAttempts instead of maxRetryAttempts?
 ```
 resilience4j.retry.instances.sample-api.maxAttempts=5 #NEW
 #resilience4j.retry.instances.sample-api.maxRetryAttempts=5 #OLD
 ```
+
+(1) There is not equivalent watch command in Windows. All we can do is to run the following command on Window's command prompt:
+
+```
+for /l %g in () do @(curl http://localhost:8000/sample-api & timeout /t 5)
+```
+
+The output will be:
+```
+fallback-response
+
+wait for 5/4/3/2/1 seconds, press a key to continue....
+```
+
+Reference: https://www.shellhacks.com/windows-watch-command-equivalent-cmd-powershell/
 
 ---
 ### Step 26 to 29
