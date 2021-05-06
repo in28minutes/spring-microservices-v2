@@ -1753,6 +1753,14 @@ rabbitmq:
     restart: always #Restart if there is a problem starting up
 ```
 
+(4) Can you try adding EUREKA.CLIENT.FETCHREGISTRY property to all microservice where we configured EUREKA.CLIENT.SERVICEURL.DEFAULTZONE as shown below:
+
+```
+environment:
+  EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+  EUREKA.CLIENT.FETCHREGISTRY: "true"
+```
+
 ### Docker Step 12
 
 Make these two changes (application.properties and pom.xml) in:
