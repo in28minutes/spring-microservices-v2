@@ -1729,7 +1729,14 @@ resilience4j.bulkhead.instances.sample-api.maxConcurrentCalls=10
 (1) Compare and try with the Docker Compose Backup files here:
 - (5 Docker Compose Backup Files)[https://github.com/in28minutes/spring-microservices-v2/tree/main/04.docker/backup]
 
-(2) Try adding `restart: always` to zipkin-server in docker-compose.yaml
+(2) Try with 3.8.12-management for rabbitmq
+
+```
+rabbitmq:
+    image: rabbitmq:3.8.12-management
+```
+
+(3) Try adding `restart: always` to zipkin-server in docker-compose.yaml
 
 ```
   zipkin-server:
