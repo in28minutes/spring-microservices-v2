@@ -77,7 +77,7 @@ services:
     restart: always #Restart if there is a problem starting up
 
   rabbitmq:
-    image: rabbitmq:3.5.3-management
+    image: rabbitmq:3.8.12-management
     mem_limit: 300m
     ports:
       - "5672:5672"
