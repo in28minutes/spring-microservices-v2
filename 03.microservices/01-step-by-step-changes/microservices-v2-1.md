@@ -1359,19 +1359,7 @@ public interface CurrencyExchangeProxy {
 ### Spring Cloud API Gateway - Step 22 to Step 25
 ---
 
-(-2) Give these settings a try individually in application.properties of all microservices (currency-exchange, currency-conversion, api-gateway) to see if they help
-
-```
-eureka.instance.prefer-ip-address=true
-```
-
-OR
-
-```
-eureka.instance.hostname=localhost
-```
-
-(0) Make sure you are using the right URLs?
+(1) Make sure you are using the right URLs?
 
 Discovery
 - http://localhost:8765/CURRENCY-EXCHANGE/currency-exchange/from/USD/to/INR
@@ -1389,8 +1377,27 @@ Discovery Disabled and Custom Routes Configured
 - http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
 - http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 
+(2) Enable wiretap to see more details
 
-(1) Are you using right configuration?
+```
+spring.cloud.gateway.httpserver.wiretap=true and spring.cloud.gateway.httpclient.wiretap=true
+```
+
+
+(3) Give these settings a try individually in application.properties of all microservices (currency-exchange, currency-conversion, api-gateway) to see if they help
+
+```
+eureka.instance.prefer-ip-address=true
+```
+
+OR
+
+```
+eureka.instance.hostname=localhost
+```
+
+
+(4) Are you using right configuration?
 
 ```
 spring.application.name=api-gateway
@@ -1402,19 +1409,19 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 #spring.cloud.gateway.discovery.locator.lowerCaseServiceId=true
 ```
 
-(2) Compare against the code for ApiGatewayConfiguration below?
+(5) Compare against the code for ApiGatewayConfiguration below?
 
-(3) Compare against the code for LoggingFilter below?
+(6) Compare against the code for LoggingFilter below?
 
-(4) Ensure that all the three services are registered with Eureka at http://localhost:8761/.
+(7) Ensure that all the three services are registered with Eureka at http://localhost:8761/.
 
-(5) Try if it works when you include the following property in application.properties for currency-conversion-service and currency-exchange-service
+(8) Try if it works when you include the following property in application.properties for currency-conversion-service and currency-exchange-service
 
 ```
 eureka.instance.hostname=localhost
 ```
 
-(6) Some student reported success when using lower-case-service-id instead of spring.cloud.gateway.discovery.locator.lowerCaseServiceId. See if it helps!
+(9) Some student reported success when using lower-case-service-id instead of spring.cloud.gateway.discovery.locator.lowerCaseServiceId. See if it helps!
 
 ```
 spring.cloud.gateway.discovery.locator.enabled=true
@@ -1426,7 +1433,7 @@ spring.cloud.gateway.discovery.locator.lower-case-service-id=true
 
 ```
 
-(7) Compare code against the complete list of components below.
+(10) Compare code against the complete list of components below.
 
 
 If everything is fine
