@@ -1262,7 +1262,10 @@ If you still have a problem, post a question including all the details:
 ---
 
 Step 19 - Understand Naming Server and Setting up Eureka Naming Server
-
+ To create Eureka Naming Server Need to use 3 dependency in your pom file.
+ 	- Spring Boot DevTools
+	- Spring boot Actuator
+	- Eureka Server
 Eureka
 - http://localhost:8761/
 
