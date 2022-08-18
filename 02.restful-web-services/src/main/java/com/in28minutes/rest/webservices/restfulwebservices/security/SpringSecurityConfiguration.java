@@ -17,7 +17,7 @@ public class SpringSecurityConfiguration {
 		http.authorizeHttpRequests(
 				auth -> auth.anyRequest().authenticated()
 				);
-//		2) If a request is not authenticated, a web page is shown
+//		2) If a request is not authenticated, use http basic
 		http.httpBasic(withDefaults());
 		
 //		3) CSRF -> POST, PUT
