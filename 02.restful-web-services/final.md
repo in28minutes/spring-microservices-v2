@@ -85,11 +85,17 @@ Current Directory : /Users/ranga/Ranga/git/00.courses/spring-microservices-v2/02
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
+
+		<!--<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
+		</dependency> -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -488,6 +494,42 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 ```
 ---
 
+### /src/main/java/com/in28minutes/rest/webservices/restfulwebservices/security/SpringSecurityConfiguration.java
+
+```java
+package com.in28minutes.rest.webservices.restfulwebservices.security;
+
+
+import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SpringSecurityConfiguration {
+	
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		
+//		1) All requests should be authenticated
+		http.authorizeHttpRequests(
+				auth -> auth.anyRequest().authenticated()
+				);
+//		2) If a request is not authenticated, a web page is shown
+		http.httpBasic(withDefaults());
+		
+//		3) CSRF -> POST, PUT
+		http.csrf().disable();
+
+		
+		return http.build();
+	}
+
+}
+```
+---
+
 ### /src/main/java/com/in28minutes/rest/webservices/restfulwebservices/user/Post.java
 
 ```java
@@ -496,6 +538,7 @@ package com.in28minutes.rest.webservices.restfulwebservices.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -511,7 +554,7 @@ public class Post {
 	@Size(min = 10)
 	private String description;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private User user;
 
@@ -558,6 +601,8 @@ package com.in28minutes.rest.webservices.restfulwebservices.user;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -586,8 +631,9 @@ public class User {
 	private LocalDate birthDate;
 	
 	@OneToMany(mappedBy = "user")
+	@JsonIgnore
 	private List<Post> posts;
-	
+ 	
 	public User(Integer id, String name, LocalDate birthDate) {
 		super();
 		this.id = id;
@@ -721,18 +767,18 @@ import jakarta.validation.Valid;
 @RestController
 public class UserJpaResource {
 
-	private UserRepository repository;
+	private UserRepository userRepository;
 	
 	private PostRepository postRepository;
 
-	public UserJpaResource(UserRepository repository, PostRepository postRepository) {
-		this.repository = repository;
+	public UserJpaResource(UserRepository userRepository, PostRepository postRepository) {
+		this.userRepository = userRepository;
 		this.postRepository = postRepository;
 	}
 
 	@GetMapping("/jpa/users")
 	public List<User> retrieveAllUsers() {
-		return repository.findAll();
+		return userRepository.findAll();
 	}
 
 	
@@ -743,7 +789,7 @@ public class UserJpaResource {
 	
 	@GetMapping("/jpa/users/{id}")
 	public EntityModel<User> retrieveUser(@PathVariable int id) {
-		Optional<User> user = repository.findById(id);
+		Optional<User> user = userRepository.findById(id);
 		
 		if(user.isEmpty())
 			throw new UserNotFoundException("id:"+id);
@@ -758,13 +804,13 @@ public class UserJpaResource {
 	
 	@DeleteMapping("/jpa/users/{id}")
 	public void deleteUser(@PathVariable int id) {
-		repository.deleteById(id);
+		userRepository.deleteById(id);
 	}
 
 	
 	@GetMapping("/jpa/users/{id}/posts")
 	public List<Post> retrievePostsForUser(@PathVariable int id) {
-		Optional<User> user = repository.findById(id);
+		Optional<User> user = userRepository.findById(id);
 		
 		if(user.isEmpty())
 			throw new UserNotFoundException("id:"+id);
@@ -776,7 +822,7 @@ public class UserJpaResource {
 	@PostMapping("/jpa/users")
 	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		
-		User savedUser = repository.save(user);
+		User savedUser = userRepository.save(user);
 
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 						.path("/{id}")
@@ -789,7 +835,7 @@ public class UserJpaResource {
 
 	@PostMapping("/jpa/users/{id}/posts")
 	public ResponseEntity<Object> createPostForUser(@PathVariable int id, @Valid @RequestBody Post post) {
-		Optional<User> user = repository.findById(id);
+		Optional<User> user = userRepository.findById(id);
 		
 		if(user.isEmpty())
 			throw new UserNotFoundException("id:"+id);
@@ -1054,12 +1100,32 @@ public class VersioningPersonController {
 ### /src/main/resources/application.properties
 
 ```properties
-logging.level.org.springframework=debug
+logging.level.org.springframework=info
 management.endpoints.web.exposure.include=*
-spring.datasource.url=jdbc:h2:mem:testdb
+#spring.datasource.url=jdbc:h2:mem:testdb
 spring.jpa.defer-datasource-initialization=true
+spring.jpa.show-sql=true
+
+spring.datasource.url=jdbc:mysql://localhost:3306/social-media-database
+spring.datasource.username=social-media-user
+spring.datasource.password=dummypassword
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
 spring.security.user.name=username
 spring.security.user.password=password
+
+# \connect social-media-user@localhost:3306
+#docker run --detach 
+#--env MYSQL_ROOT_PASSWORD=dummypassword 
+#--env MYSQL_USER=social-media-user 
+#--env MYSQL_PASSWORD=dummypassword 
+#--env MYSQL_DATABASE=social-media-database 
+#--name mysql 
+#--publish 3306:3306 
+#mysql:8-oracle
+#
 ```
 ---
 
