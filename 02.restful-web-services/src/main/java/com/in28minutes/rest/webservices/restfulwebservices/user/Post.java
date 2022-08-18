@@ -1,12 +1,9 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.Size;
 
 @Entity
 public class Post {
@@ -15,11 +12,9 @@ public class Post {
 	@GeneratedValue
 	private Integer id;
 	
-	@Size(min = 10)
 	private String description;
 	
 	@ManyToOne
-	@JsonIgnore
 	private User user;
 
 	public Integer getId() {

@@ -32,7 +32,7 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
-	
+ 	
 	public User(Integer id, String name, LocalDate birthDate) {
 		super();
 		this.id = id;
