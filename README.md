@@ -1,12 +1,20 @@
-# Spring Microservices - V2 - Microservices + Spring Boot + Spring Cloud + Docker + Kubernetes
+# Spring Microservices - V2 - REST + Microservices + Spring Boot + Spring Cloud + Docker + Kubernetes
 
-#### V2 of our most popular course - Microservices + Spring Cloud + Docker + Kubernetes
+#### V2 of our most popular course - REST + Microservices + Spring Cloud + Docker + Kubernetes
 
 [![Image](https://www.springboottutorial.com/images/Course-Master-Microservices-with-Spring-Boot-and-Spring-Cloud.png "Master Microservices with Spring Boot and Spring Cloud")](https://www.udemy.com/course/microservices-with-spring-boot-and-spring-cloud/)
 
 Learn how to create awesome Microservices and RESTful web services with Spring and Spring Boot.
 
-Update Jan 2021: Docker and Kubernetes added to the course!
+Updates
+- Jan 2021: Docker and Kubernetes added to the course!
+- Aug 2022: REST API V2 recorded with Spring Boot 3
+
+## Launch MySQL as Docker Container
+
+```
+docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=social-media-user --env MYSQL_PASSWORD=dummypassword --env MYSQL_DATABASE=social-media-database --name mysql --publish 3306:3306 mysql:8-oracle
+```
 
 ## What will you learn?
 
