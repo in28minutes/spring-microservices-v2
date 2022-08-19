@@ -86,3 +86,71 @@ You will learn
 - Step 35 - OPTIONAL - Connecting REST API to MySQL Database - Implementation
 - Step 36 - Implementing Basic Authentication with Spring Security
 - Step 37 - Enhancing Spring Security Configuration for Basic Authentication
+
+## Lectures to Upload
+```
+Step 01 - Getting Started with JPA and Hibernate - Goals 20220712.mp4
+Step 02 - Setting up New Spring Boot Project for JPA and Hibernate 20220712.mp4
+Step 03 - Launching up H2 Console and Creating Course Table in H2 20220712.mp4
+Step 04 - Getting Started with Spring JDBC 20220712.mp4
+Step 05 - Inserting Hardcoded Data using Spring JDBC 20220712.mp4
+Step 06 - Inserting and Deleting Data using Spring JDBC 20220712.mp4
+Step 07 - Querying Data using Spring JDBC 20220712.mp4
+Step 08 - Getting Started with JPA and EntityManager 20220712.mp4
+Step 09 - Exploring the Magic of JPA 20220712.mp4
+Step 10 - Getting Started with Spring Data JPA 20220712.mp4
+Step 11 - Exploring features of Spring Data JPA 20220712.mp4
+Step 12 - Understanding difference between Hibernate and JPA 20220712.mp4
+
+Step 00 - Creating a REST API with Spring Boot - An Overview 20220819.mp4
+Step 01 - Initializing a REST API Project with Spring Boot 20220819.mp4
+Step 02 - Creating a Hello World REST API with Spring Boot 20220819.mp4
+Step 03 - Enhancing the Hello World REST API to return a Bean 20220819.mp4
+Step 04 - What's happening in the background? Spring Boot Starters and Autoconfiguration 20220819.mp4
+Step 05 - Enhancing the Hello World REST API with a Path Variable 20220819.mp4
+Step 06 - Designing the REST API for Social Media Application 20220819.mp4
+Step 07 - Creating User Bean and UserDaoService 20220819.mp4
+Step 08 - Implementing GET Methods for User Resource 20220819.mp4
+Step 09 - Implementing POST Method to create User Resource 20220819.mp4
+Step 10 - Enhancing POST Method to return correct HTTP Status Code and Location URI 20220819.mp4
+Step 11 - Implementing Exception Handling - 404 Resource Not Found 20220819.mp4
+Step 12 - Implementing Generic Exception Handling for all Resources 20220819.mp4
+Step 13 - Implementing DELETE Method to delete a User Resource 20220819.mp4
+Step 14 - Implementing Validations for REST API 20220819.mp4
+Step 15 - Overview of Advanced REST API Features 20220819.mp4
+Step 16 - Understanding Open API Specification and Swagger 20220819.mp4
+Step 17 - Configuring Auto Generation of Swagger Documentation 20220819.mp4
+Step 18 - Exploring Content Negotiation - Implementing Support for XML 20220819.mp4
+Step 19 - Exploring Internationalization for REST API 20220819.mp4
+Step 20 - Versioning REST API - URI Versioning 20220819.mp4
+Step 21 - Versioning REST API - Request Param, Header and Content Negotiation 20220819.mp4
+Step 22 - Implementing HATEOAS for REST API 20220819.mp4
+Step 23 - Implementing Static Filtering for REST API 20220819.mp4
+Step 24 - Implementing Dynamic Filtering for REST API 20220819.mp4
+Step 25 - Monitoring APIs with Spring Boot Actuator 20220819.mp4
+Step 26 - Exploring APIs with Spring Boot HAL Explorer 20220819.mp4
+Step 27 - Connecting REST API to H2 using JPA and Hibernate - An Overview 20220819.mp4
+Step 28 - Creating User Entity and some test data 20220819.mp4
+Step 29 - Enhancing REST API to connect to H2 using JPA and Hibernate 20220819.mp4
+Step 30 - Creating Post Entity with Many to One Relationship with User Entity 20220819.mp4
+Step 31 - Implementing a GET API to retrieve all Posts of a User 20220819.mp4
+Step 32 - Implementing a POST API to create a Post for a User 20220819.mp4
+Step 33 - Exploring JPA and Hibernate Queries for REST API 20220819.mp4
+Step 34 - Connecting REST API to MySQL Database - An Overview 20220819.mp4
+Step 34z - OPTIONAL - Installing Docker 20220714.mp4
+Step 35 - OPTIONAL - Connecting REST API to MySQL Database - Implementation 20220819.mp4
+Step 36 - Implementing Basic Authentication with Spring Security 20220819.mp4
+Step 37 - Enhancing Spring Security Configuration for Basic Authentication 20220819.mp4
+
+APPENDIX - Introduction to Functional Programming in 30 Minutes
+Step 00 - Introduction to Functional Programming - Overview 20220714.mp4
+Step 01 - Getting Started with Functional Programming with Java RE-EXPORTED 20220819.mp4
+Step 02 - Writing Your First Java Functional Program RE-EXPORTED 20220819.mp4
+Step 03 - Improving Java Functional Program with filter RE-EXPORTED 20220819.mp4
+Step 04 - Using Lambda Expression to enhance your Functional Program RE-EXPORTED 20220819.mp4
+Step 05 - Do Functional Programming Exercises with Streams, Filters and Lambdas RE-EXPORTED 20220819.mp4
+Step 06 - Using map in Functional Programs - with Exercises RE-EXPORTED 20220819.mp4
+Step 07 - Understanding Optional class in Java 20220819.mp4
+Step 08 - Quick Review of Functional Programming Basics RE-EXPORTED 20220819.mp4
+
+```
