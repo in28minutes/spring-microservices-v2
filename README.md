@@ -10,11 +10,38 @@ Updates
 - Jan 2021: Docker and Kubernetes added to the course!
 - Aug 2022: REST API V2 recorded with Spring Boot 3
 
+
 ## Launch MySQL as Docker Container
 
 ```
 docker run --detach --env MYSQL_ROOT_PASSWORD=dummypassword --env MYSQL_USER=social-media-user --env MYSQL_PASSWORD=dummypassword --env MYSQL_DATABASE=social-media-database --name mysql --publish 3306:3306 mysql:8-oracle
 ```
+
+## Installing Tools
+
+### Our Recommendations
+
+- Use **latest version** of Java
+- Use **latest version** of "Eclipse IDE for Enterprise Java Developers"
+- Remember: Spring Boot 3+ works only with Java 17+
+
+### Installing Java
+
+- Windows - https://www.youtube.com/watch?v=I0SBRWVS0ok
+- Linux - https://www.youtube.com/watch?v=mHvFpyHK97A
+- Mac - https://www.youtube.com/watch?v=U3kTdMPlgsY
+
+#### Troubleshooting
+
+- Troubleshooting Java Installation - https://www.youtube.com/watch?v=UI_PabQ1YB0
+
+### Installing Eclipse
+
+- Windows - https://www.youtube.com/watch?v=toY06tsME-M
+- Others - https://www.youtube.com/watch?v=XveQ9Gq41UM
+
+#### Troubleshooting
+- Configuring Java in Eclipse - https://www.youtube.com/watch?v=8i0r_fcE3L0
 
 ## What will you learn?
 

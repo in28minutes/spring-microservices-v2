@@ -43,15 +43,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
-		<java.version>15</java.version>
-		<spring-cloud.version>2020.0.0</spring-cloud.version>
-	</properties>
-
+	    <java.version>17</java.version>
+	    <spring-cloud.version>2021.0.3</spring-cloud.version>
+  	</properties>
 ```
 
 
