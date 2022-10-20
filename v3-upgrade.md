@@ -48,7 +48,13 @@
 </pluginRepositories>
 
 ```
-## 4. For more details please refer to spring cloud release notes:
+## 5. Change from `javax` package to `jakarta` package in the entity classes
+```java
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+```
+## 6. For more details please refer to spring cloud release notes:
 https://github.com/spring-cloud/spring-cloud-netflix/issues/4128
 
 https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2022.0-Release-Notes#202200-m5
