@@ -336,6 +336,7 @@ git commit -m "First commit"
 ```
 
 #### /git-localconfig-repo/limits-service.properties New
+##### Make sure you don't create the prop file like: right click in 'git-localconfig-repo' -> Create New Text document => This creates a file like 'limits-service.properties.txt'. Create the file using some editor like VS Code.
 
 ```properties
 limits-service.minimum=4
