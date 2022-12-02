@@ -1330,6 +1330,19 @@ New Lines
 		</dependency>
 
 ```
+### Make sure to add the below repository to your pom.xml file for the Netflix Eureka Client dependency to work Modified
+
+```xml
+		<repository>
+			<id>netflix-candidates</id>
+			<name>Netflix Candidates</name>
+			<url>https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+```
+
 #### /currency-exchange-service/src/main/resources/application.properties Modified
 New Lines
 ```properties
