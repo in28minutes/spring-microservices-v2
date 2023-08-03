@@ -1,6 +1,10 @@
 # Spring Microservices - REST + Microservices + Spring Boot + Spring Cloud + Docker + Kubernetes
 
-> This repo contains code with Spring Boot 2.x. For Spring Boot 3, go here - http://github.com/in28minutes/spring-microservices-v3
+## NOTE: This repo contains code with Spring Boot 2.x
+
+For Spring Boot 3, go here - http://github.com/in28minutes/spring-microservices-v3
+
+## COURSE DETAILS
 
 [![Image](https://www.springboottutorial.com/images/Course-Master-Microservices-with-Spring-Boot-and-Spring-Cloud.png "Master Microservices with Spring Boot and Spring Cloud")](https://www.udemy.com/course/microservices-with-spring-boot-and-spring-cloud/)
 
@@ -9,6 +13,7 @@ Learn how to create awesome Microservices and RESTful web services with Spring a
 Updates
 - Jan 2021: Docker and Kubernetes added to the course!
 - Aug 2022: REST API V2 recorded with Spring Boot 3
+- Aug 2023: New Repo for Spring Boot 3 - http://github.com/in28minutes/spring-microservices-v3
 
 
 ## Launch MySQL as Docker Container
