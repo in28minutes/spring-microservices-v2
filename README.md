@@ -1,6 +1,4 @@
-# Spring Microservices - V2 - REST + Microservices + Spring Boot + Spring Cloud + Docker + Kubernetes
-
-#### Our most popular course - REST + Microservices + Spring Cloud + Docker + Kubernetes
+# Spring Microservices - REST + Microservices + Spring Boot + Spring Cloud + Docker + Kubernetes
 
 > This repo contains code with Spring Boot 2.x. For Spring Boot 3, go here - http://github.com/in28minutes/spring-microservices-v3
 
